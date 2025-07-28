@@ -99,6 +99,7 @@
       "timeout": 10,
       "asn_hint": ["MTS_GROUP"]
     },
+
     {
       "name": "MTTC2",
       "description": "MTTC2: спец. правила для региональных провайдеров (МТС/МГТС)",
@@ -107,6 +108,24 @@
       "strategy": "MttcStrategy",
       "timeout": 10,
       "asn_hint": ["MTS_GROUP", "ER-TELECOM"]
-    }
+    },
+    {
+      "name": "MTTC3",
+      "description": "MTTC3: альтернативные правила для MGTS",
+      "filter": "tcp.DstPort == 443",
+      "options": "--sni --split --mss 1000",
+      "strategy": "MttcStrategy",
+      "timeout": 10,
+      "asn_hint": ["MTS_GROUP"]
+     },
+     {
+      "name": "MTTC4",
+      "description": "MTTC4: MGTS fallback",
+      "filter": "tcp.DstPort == 443",
+      "options": "--sni --host --split --mss 900",
+      "strategy": "MttcStrategy",
+      "timeout": 12,
+      "asn_hint": ["MTS_GROUP"]
+     }
   ]
 }
