@@ -1,0 +1,65 @@
+# --- YouTube / Google ---
+youtube.com
+www.youtube.com
+m.youtube.com
+ytimg.com
+i.ytimg.com
+googlevideo.com
+yt3.ggpht.com
+ggpht.com
+youtubei.googleapis.com
+
+# --- Twitch ---
+twitch.tv
+www.twitch.tv
+static.twitchcdn.net
+video-edge.twitch.tv
+
+# --- Discord ---
+discord.com
+discord.gg
+cdn.discordapp.com
+media.discordapp.net
+discordapp.net
+gateway.discord.gg
+status.discord.com
+
+# --- Twitter / X ---
+twitter.com
+abs.twimg.com
+video.twimg.com
+pbs.twimg.com
+
+# --- Instagram / Meta ---
+instagram.com
+www.instagram.com
+scontent.cdninstagram.com
+cdninstagram.com
+fbcdn.net
+scontent.xx.fbcdn.net
+
+# --- ChatGPT / OpenAI ---
+chat.openai.com
+cdn.openai.com
+ai.com
+
+# --- Cloudflare (ASN 13335, 395092) ---
+104.16.0.0/12
+172.64.0.0/13
+141.101.64.0/18
+188.114.96.0/20
+185.60.216.0/22
+162.159.0.0/16
+198.41.128.0/17
+
+# --- Telegram (MTProto fallback) ---
+149.154.167.91
+91.108.4.0/22
+91.108.8.0/22
+91.108.56.0/22
+149.154.160.0/20
+
+# --- Misc (to expand future support) ---
+netflix.com
+assets.nflxext.com
+prod.netflix.net
