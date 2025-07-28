@@ -1,0 +1,24 @@
+{
+  "proxies": [
+    "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt",
+    "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt",
+    "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt",
+    "https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt",
+    "https://raw.githubusercontent.com/monosans/proxy-list/main/proxies.json",
+    "https://raw.githubusercontent.com/vakhov/fresh-proxy-list/main/proxy_list.txt",
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/proxies.txt"
+  ],
+  "cdn": [
+    "https://raw.githubusercontent.com/SoNiX-official/StabiLink/main/cdn_fallback.txt",
+    "https://raw.githubusercontent.com/projectdiscovery/cdncheck/main/provider.yaml",
+    "https://raw.githubusercontent.com/jsdeliver/fallback/main/cdnlist.txt",
+    "https://raw.githubusercontent.com/jcubic/static/master/cdn.txt",
+    "https://raw.githubusercontent.com/bahmutov/cdn-with-local-fallback/master/cdn.txt"
+  ],
+  "tor_bridges": [
+    "https://bridges.torproject.org/bridges?transport=obfs4",
+    "https://raw.githubusercontent.com/seevik2580/tor-ip-changer/master/tor/bridges.txt",
+    "https://raw.githubusercontent.com/scriptzteam/Tor-Bridges-Collector/main/bridges-obfs4-ipv6.txt",
+    "https://raw.githubusercontent.com/SoNiX-official/StabiLink/main/tor_bridges_fallback.txt"
+  ]
+}
