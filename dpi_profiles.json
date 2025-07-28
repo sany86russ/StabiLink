@@ -82,6 +82,15 @@
       "asn_hint": ["BEELINE", "TELE2", "ROSTELECOM", "MTS_GROUP"]
     },
     {
+      "name": "DNS_FAKE_TLS2",
+      "description": "DoH + FakeTLS для MGTS",
+      "filter": "udp.DstPort == 53 or tcp.DstPort == 443",
+      "options": "--dns-redirect 8.8.8.8 --sni --fake",
+      "strategy": "MixedStrategy",
+      "timeout": 8,
+      "asn_hint": ["MTS_GROUP"]
+    },
+    {
       "name": "QUIC_SPLITTER",
       "description": "QUIC Splitter: HTTP/3 Initial fragmentation",
       "filter": "udp.DstPort == 443",
