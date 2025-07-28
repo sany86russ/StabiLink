@@ -90,6 +90,15 @@
   "timeout": 8,
   "asn_hint": ["MTS_GROUP"]
 },
+{
+  "name": "ALT8",
+  "description": "ALT8: максимальная агрессивная фрагментация для MGTS",
+  "filter": "tcp.DstPort == 443",
+  "options": "--sni --host --split --mss 480",
+  "strategy": "FragmentationStrategy",
+  "timeout": 12,
+  "asn_hint": ["MTS_GROUP"]
+},
     {
       "name": "DNS_FAKE_TLS",
       "description": "DoH + FakeTLS: DNS-over-HTTPS + FakeTLS",
@@ -162,6 +171,42 @@
   "strategy": "MixedStrategy",
   "timeout": 8,
   "asn_hint": ["MTS_GROUP"]
-}
+},
+{
+  "name": "DNS_DOH",
+  "description": "DNS-over-HTTPS обход MGTS",
+  "filter": "udp.DstPort == 53 or tcp.DstPort == 443",
+  "options": "--doh https://dns.google/dns-query --sni --fake",
+  "strategy": "MixedStrategy",
+  "timeout": 10,
+  "asn_hint": ["MTS_GROUP"]
+},
+    {
+      "name": "QUIC_SPLITTER",
+      "description": "QUIC Splitter (HTTP/3 workaround)",
+      "filter": "udp.DstPort == 443",
+      "options": "--quic-frag --no-quic",
+      "strategy": "QuicStrategy",
+      "timeout": 9,
+      "asn_hint": ["MTS_GROUP", "BEELINE", "YOTA"]
+    },
+{
+  "name": "HYBRID_PROXY",
+  "description": "DPI + локальный SOCKS5 Proxy",
+  "filter": "tcp.DstPort == 443",
+  "options": "--sni --split --proxy 127.0.0.1:9050",
+  "strategy": "HybridStrategy",
+  "timeout": 12,
+  "asn_hint": ["MTS_GROUP"]
+},
+ {
+      "name": "DiscordVoice",
+      "description": "Discord Voice UDP",
+      "filter": "udp.DstPort >= 50000 and udp.DstPort <= 65000",
+      "options": "--udp-voice-bypass",
+      "strategy": "VoiceStrategy",
+      "timeout": 10,
+      "asn_hint": ["MTS_GROUP", "ROSTELECOM", "BEELINE"]
+    }
   ]
 }
