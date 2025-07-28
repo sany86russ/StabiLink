@@ -72,6 +72,24 @@
       "timeout": 6,
       "asn_hint": ["ROSTELECOM", "MTS_GROUP"]
     },
+{
+  "name": "ALT6",
+  "description": "ALT6: агрессивная фрагментация (MSS 600 + host)",
+  "filter": "tcp.DstPort == 443",
+  "options": "--sni --host --split --mss 600",
+  "strategy": "FragmentationStrategy",
+  "timeout": 8,
+  "asn_hint": ["MTS_GROUP"]
+},
+{
+  "name": "ALT7",
+  "description": "ALT7: fallback для MGTS",
+  "filter": "tcp.DstPort == 443",
+  "options": "--sni --split --mss 500",
+  "strategy": "FragmentationStrategy",
+  "timeout": 8,
+  "asn_hint": ["MTS_GROUP"]
+},
     {
       "name": "DNS_FAKE_TLS",
       "description": "DoH + FakeTLS: DNS-over-HTTPS + FakeTLS",
@@ -135,6 +153,15 @@
       "strategy": "MttcStrategy",
       "timeout": 12,
       "asn_hint": ["MTS_GROUP"]
-     }
+     },
+{
+  "name": "DNS_FAKE_TLS3",
+  "description": "DoH с Quad9",
+  "filter": "udp.DstPort == 53 or tcp.DstPort == 443",
+  "options": "--dns-redirect 9.9.9.9 --sni --fake",
+  "strategy": "MixedStrategy",
+  "timeout": 8,
+  "asn_hint": ["MTS_GROUP"]
+}
   ]
 }
