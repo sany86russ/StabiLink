@@ -1,212 +1,76 @@
 {
   "profiles": [
     {
-      "name": "FAKE_TLS_AUTO",
-      "description": "Fake TLS Auto: универсальная подмена TLS ClientHello",
+      "name": "FAKE_RSTACK",
+      "description": "FakeTLS + RSTACK (универсальный)",
       "filter": "tcp.DstPort == 443",
-      "options": "--sni --fake",
-      "strategy": "FakeTlsStrategy",
-      "timeout": 5,
-      "asn_hint": ["ROSTELECOM", "BEELINE", "YOTA", "MTS_GROUP"]
-    },
-    {
-      "name": "FAKE_TLS_ALT",
-      "description": "Fake TLS ALT: FakeTLS + Host обфускация",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --host --fake",
-      "strategy": "FakeTlsStrategy",
-      "timeout": 5,
-      "asn_hint": ["BEELINE", "TELE2", "MTS_GROUP"]
-    },
-    {
-      "name": "FAKE_TLS_ALT2",
-      "description": "Fake TLS ALT2: FakeTLS + Split Handshake",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --split --fake",
+      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,rstack --filter-udp=443 --filter-l7=tls,http",
       "strategy": "FakeTlsStrategy",
       "timeout": 6,
-      "asn_hint": ["ROSTELECOM", "MTS_GROUP"]
+      "asn_hint": ["MTS_GROUP", "ROSTELECOM", "BEELINE", "MGTS"]
     },
     {
-      "name": "ALT",
-      "description": "ALT: стандартная SNI фрагментация",
+      "name": "FAKE_IPFRAG2",
+      "description": "FakeTLS + IPFRAG2 (лучше для YouTube/Instagram)",
       "filter": "tcp.DstPort == 443",
-      "options": "--sni --split",
+      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --filter-udp=443 --filter-l7=tls,http",
       "strategy": "FragmentationStrategy",
-      "timeout": 5,
-      "asn_hint": ["ROSTELECOM", "MTS_GROUP"]
+      "timeout": 6,
+      "asn_hint": ["GOOGLE", "META"]
     },
     {
-      "name": "ALT2",
-      "description": "ALT2: фрагментация с MSS 1200",
+      "name": "FAKE_SYNACK",
+      "description": "FakeTLS + SYNACK (часто работает с Twitch/Discord)",
       "filter": "tcp.DstPort == 443",
-      "options": "--sni --split --mss 1200",
+      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,synack --filter-udp=443 --filter-l7=tls,http",
+      "strategy": "FakeTlsStrategy",
+      "timeout": 7,
+      "asn_hint": ["DISCORD", "TWITCH"]
+    },
+    {
+      "name": "FAKE_IPFRAG1",
+      "description": "FakeTLS + IPFRAG1 (альтернатива для некоторых провайдеров)",
+      "filter": "tcp.DstPort == 443",
+      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,ipfrag1 --filter-udp=443 --filter-l7=tls,http",
       "strategy": "FragmentationStrategy",
-      "timeout": 5,
+      "timeout": 6,
       "asn_hint": ["MTS_GROUP", "ROSTELECOM"]
     },
     {
-      "name": "ALT3",
-      "description": "ALT3: агрессивная фрагментация (MSS 800)",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --split --mss 800",
-      "strategy": "FragmentationStrategy",
-      "timeout": 6,
-      "asn_hint": ["BEELINE", "TELE2", "MTS_GROUP"]
-    },
-    {
-      "name": "ALT4",
-      "description": "ALT4: фрагментация с MSS 600",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --split --mss 600",
-      "strategy": "FragmentationStrategy",
-      "timeout": 6,
-      "asn_hint": ["YOTA", "MTS_GROUP"]
-    },
-    {
-      "name": "ALT5",
-      "description": "ALT5: фрагментация + Host",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --host --split",
-      "strategy": "FragmentationStrategy",
-      "timeout": 6,
-      "asn_hint": ["ROSTELECOM", "MTS_GROUP"]
-    },
-{
-  "name": "ALT6",
-  "description": "ALT6: агрессивная фрагментация (MSS 600 + host)",
-  "filter": "tcp.DstPort == 443",
-  "options": "--sni --host --split --mss 600",
-  "strategy": "FragmentationStrategy",
-  "timeout": 8,
-  "asn_hint": ["MTS_GROUP"]
-},
-{
-  "name": "ALT7",
-  "description": "ALT7: fallback для MGTS",
-  "filter": "tcp.DstPort == 443",
-  "options": "--sni --split --mss 500",
-  "strategy": "FragmentationStrategy",
-  "timeout": 8,
-  "asn_hint": ["MTS_GROUP"]
-},
-{
-  "name": "ALT8",
-  "description": "ALT8: максимальная агрессивная фрагментация для MGTS",
-  "filter": "tcp.DstPort == 443",
-  "options": "--sni --host --split --mss 480",
-  "strategy": "FragmentationStrategy",
-  "timeout": 12,
-  "asn_hint": ["MTS_GROUP"]
-},
-    {
-      "name": "DNS_FAKE_TLS",
-      "description": "DoH + FakeTLS: DNS-over-HTTPS + FakeTLS",
-      "filter": "udp.DstPort == 53 or tcp.DstPort == 443",
-      "options": "--dns-redirect 1.1.1.1 --sni --fake",
-      "strategy": "MixedStrategy",
-      "timeout": 8,
-      "asn_hint": ["BEELINE", "TELE2", "ROSTELECOM", "MTS_GROUP"]
-    },
-    {
-      "name": "DNS_FAKE_TLS2",
-      "description": "DoH + FakeTLS для MGTS",
-      "filter": "udp.DstPort == 53 or tcp.DstPort == 443",
-      "options": "--dns-redirect 8.8.8.8 --sni --fake",
-      "strategy": "MixedStrategy",
-      "timeout": 8,
-      "asn_hint": ["MTS_GROUP"]
-    },
-    {
-      "name": "QUIC_SPLITTER",
-      "description": "QUIC Splitter: HTTP/3 Initial fragmentation",
+      "name": "QUIC_BLOCK",
+      "description": "Блокировка QUIC (HTTP/3, заставляет работать HTTPS/TCP)",
       "filter": "udp.DstPort == 443",
-      "options": "--quic-frag",
+      "options": "--wf-udp=443 --no-quic",
       "strategy": "QuicStrategy",
-      "timeout": 8,
-      "asn_hint": ["YOTA", "ROSTELECOM", "BEELINE", "MTS_GROUP"]
+      "timeout": 5,
+      "asn_hint": ["ALL"]
     },
     {
-      "name": "MTTC",
-      "description": "MTTC: спец. правила для МТС и МГТС",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --split --mss 1400",
-      "strategy": "MttcStrategy",
-      "timeout": 10,
-      "asn_hint": ["MTS_GROUP"]
-    },
-
-    {
-      "name": "MTTC2",
-      "description": "MTTC2: спец. правила для региональных провайдеров (МТС/МГТС)",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --host --mss 1300",
-      "strategy": "MttcStrategy",
-      "timeout": 10,
-      "asn_hint": ["MTS_GROUP", "ER-TELECOM"]
-    },
-    {
-      "name": "MTTC3",
-      "description": "MTTC3: альтернативные правила для MGTS",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --split --mss 1000",
-      "strategy": "MttcStrategy",
-      "timeout": 10,
-      "asn_hint": ["MTS_GROUP"]
-     },
-     {
-      "name": "MTTC4",
-      "description": "MTTC4: MGTS fallback",
-      "filter": "tcp.DstPort == 443",
-      "options": "--sni --host --split --mss 900",
-      "strategy": "MttcStrategy",
-      "timeout": 12,
-      "asn_hint": ["MTS_GROUP"]
-     },
-{
-  "name": "DNS_FAKE_TLS3",
-  "description": "DoH с Quad9",
-  "filter": "udp.DstPort == 53 or tcp.DstPort == 443",
-  "options": "--dns-redirect 9.9.9.9 --sni --fake",
-  "strategy": "MixedStrategy",
-  "timeout": 8,
-  "asn_hint": ["MTS_GROUP"]
-},
-{
-  "name": "DNS_DOH",
-  "description": "DNS-over-HTTPS обход MGTS",
-  "filter": "udp.DstPort == 53 or tcp.DstPort == 443",
-  "options": "--doh https://dns.google/dns-query --sni --fake",
-  "strategy": "MixedStrategy",
-  "timeout": 10,
-  "asn_hint": ["MTS_GROUP"]
-},
-    {
-      "name": "QUIC_SPLITTER",
-      "description": "QUIC Splitter (HTTP/3 workaround)",
-      "filter": "udp.DstPort == 443",
-      "options": "--quic-frag --no-quic",
-      "strategy": "QuicStrategy",
-      "timeout": 9,
-      "asn_hint": ["MTS_GROUP", "BEELINE", "YOTA"]
-    },
-{
-  "name": "HYBRID_PROXY",
-  "description": "DPI + локальный SOCKS5 Proxy",
-  "filter": "tcp.DstPort == 443",
-  "options": "--sni --split --proxy 127.0.0.1:9050",
-  "strategy": "HybridStrategy",
-  "timeout": 12,
-  "asn_hint": ["MTS_GROUP"]
-},
- {
-      "name": "DiscordVoice",
-      "description": "Discord Voice UDP",
+      "name": "DISCORD_VOICE",
+      "description": "Discord Voice UDP (голосовые чаты)",
       "filter": "udp.DstPort >= 50000 and udp.DstPort <= 65000",
-      "options": "--udp-voice-bypass",
+      "options": "--wf-udp=50000-65000 --udp-voice-bypass",
       "strategy": "VoiceStrategy",
       "timeout": 10,
-      "asn_hint": ["MTS_GROUP", "ROSTELECOM", "BEELINE"]
+      "asn_hint": ["DISCORD"]
+    },
+    {
+      "name": "ALT_FAKE_RSTACK",
+      "description": "Альтернативный fake+rstack",
+      "filter": "tcp.DstPort == 443",
+      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,rstack --filter-udp=443 --filter-l7=tls,http",
+      "strategy": "AltStrategy",
+      "timeout": 8,
+      "asn_hint": ["MGTS", "MTS_GROUP"]
+    },
+    {
+      "name": "ALT_FAKE_IPFRAG2",
+      "description": "Альтернативный fake+ipfrag2",
+      "filter": "tcp.DstPort == 443",
+      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --filter-udp=443 --filter-l7=tls,http",
+      "strategy": "AltStrategy",
+      "timeout": 8,
+      "asn_hint": ["GOOGLE", "META"]
     }
   ]
 }
