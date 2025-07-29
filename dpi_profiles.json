@@ -1,46 +1,37 @@
 {
   "profiles": [
     {
-      "name": "FAKE_RSTACK",
-      "description": "FakeTLS + RSTACK (универсальный)",
+      "name": "FAKE_FAKEDSPLIT",
+      "description": "FakeTLS + fakedsplit (универсальный)",
       "filter": "tcp.DstPort == 443",
-      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,rstack --filter-udp=443 --filter-l7=tls,http",
-      "strategy": "FakeTlsStrategy",
-      "timeout": 6,
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,fakedsplit",
+      "strategy": "Default",
+      "timeout": 7,
       "asn_hint": ["MTS_GROUP", "ROSTELECOM", "BEELINE", "MGTS"]
     },
     {
       "name": "FAKE_IPFRAG2",
-      "description": "FakeTLS + IPFRAG2 (лучше для YouTube/Instagram)",
+      "description": "FakeTLS + ipfrag2 (лучше для YouTube/Instagram)",
       "filter": "tcp.DstPort == 443",
-      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --filter-udp=443 --filter-l7=tls,http",
-      "strategy": "FragmentationStrategy",
-      "timeout": 6,
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2",
+      "strategy": "Fragmentation",
+      "timeout": 7,
       "asn_hint": ["GOOGLE", "META"]
     },
     {
-      "name": "FAKE_SYNACK",
-      "description": "FakeTLS + SYNACK (часто работает с Twitch/Discord)",
+      "name": "FAKE_UDPLEN",
+      "description": "FakeTLS + udplen (для ChatGPT/Twitter)",
       "filter": "tcp.DstPort == 443",
-      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,synack --filter-udp=443 --filter-l7=tls,http",
-      "strategy": "FakeTlsStrategy",
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,udplen --dpi-desync-udplen-increment=3",
+      "strategy": "Tamper",
       "timeout": 7,
-      "asn_hint": ["DISCORD", "TWITCH"]
-    },
-    {
-      "name": "FAKE_IPFRAG1",
-      "description": "FakeTLS + IPFRAG1 (альтернатива для некоторых провайдеров)",
-      "filter": "tcp.DstPort == 443",
-      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,ipfrag1 --filter-udp=443 --filter-l7=tls,http",
-      "strategy": "FragmentationStrategy",
-      "timeout": 6,
-      "asn_hint": ["MTS_GROUP", "ROSTELECOM"]
+      "asn_hint": ["MICROSOFT", "AZURE"]
     },
     {
       "name": "QUIC_BLOCK",
-      "description": "Блокировка QUIC (HTTP/3, заставляет работать HTTPS/TCP)",
+      "description": "Блокировка QUIC (HTTP/3 → TCP)",
       "filter": "udp.DstPort == 443",
-      "options": "--wf-udp=443 --no-quic",
+      "options": "--wf-udp=443 --dpi-desync=fake,udplen --dpi-desync-udplen-increment=1",
       "strategy": "QuicStrategy",
       "timeout": 5,
       "asn_hint": ["ALL"]
@@ -49,28 +40,10 @@
       "name": "DISCORD_VOICE",
       "description": "Discord Voice UDP (голосовые чаты)",
       "filter": "udp.DstPort >= 50000 and udp.DstPort <= 65000",
-      "options": "--wf-udp=50000-65000 --udp-voice-bypass",
+      "options": "--wf-udp=50000-65000 --dpi-desync=udplen --dpi-desync-udplen-increment=2",
       "strategy": "VoiceStrategy",
       "timeout": 10,
       "asn_hint": ["DISCORD"]
-    },
-    {
-      "name": "ALT_FAKE_RSTACK",
-      "description": "Альтернативный fake+rstack",
-      "filter": "tcp.DstPort == 443",
-      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,rstack --filter-udp=443 --filter-l7=tls,http",
-      "strategy": "AltStrategy",
-      "timeout": 8,
-      "asn_hint": ["MGTS", "MTS_GROUP"]
-    },
-    {
-      "name": "ALT_FAKE_IPFRAG2",
-      "description": "Альтернативный fake+ipfrag2",
-      "filter": "tcp.DstPort == 443",
-      "options": "--wf-raw=\"tcp.DstPort == 443\" --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --filter-udp=443 --filter-l7=tls,http",
-      "strategy": "AltStrategy",
-      "timeout": 8,
-      "asn_hint": ["GOOGLE", "META"]
     }
   ]
 }
