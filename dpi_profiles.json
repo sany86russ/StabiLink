@@ -29,7 +29,7 @@
     },
     {
       "name": "QUIC_BLOCK",
-      "description": "Жёсткая блокировка QUIC (UDP/443 без ipset)",
+      "description": "Блокировка QUIC (UDP/443, без ipset)",
       "filter": "udp.DstPort == 443",
       "options": "--wf-udp=443 --dpi-desync=fake,udplen --dpi-desync-udplen-increment=1 --dpi-desync-ttl=5",
       "strategy": "QuicStrategy",
