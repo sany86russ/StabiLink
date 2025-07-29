@@ -19,6 +19,11 @@
       "asn_hint": ["ROSTELECOM", "BEELINE", "ER_TELECOM"]
     },
     {
+  "name": "FAKE_IPFRAG2",
+  "asn_hint": ["MTS_GROUP", "MGTS"],
+  "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --dpi-desync-ttl=5"
+},
+    {
       "name": "FAKE_UDPLEN",
       "description": "Akado, Yandex, Cloud, fallback — FakeTLS + udplen",
       "filter": "tcp.DstPort == 443",
