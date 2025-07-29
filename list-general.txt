@@ -8,12 +8,15 @@ googlevideo.com
 yt3.ggpht.com
 ggpht.com
 youtubei.googleapis.com
+youtubeusercontent.com
+*.googlevideo.com
 
 # --- Twitch ---
 twitch.tv
 www.twitch.tv
 static.twitchcdn.net
 video-edge.twitch.tv
+live-edge.twitch.tv
 
 # --- Discord ---
 discord.com
@@ -37,13 +40,14 @@ scontent.cdninstagram.com
 cdninstagram.com
 fbcdn.net
 scontent.xx.fbcdn.net
+static.xx.fbcdn.net
 
 # --- ChatGPT / OpenAI ---
 chat.openai.com
 cdn.openai.com
 ai.com
 
-# --- Cloudflare (ASN 13335, 395092) ---
+# --- Cloudflare IP ranges ---
 104.16.0.0/12
 172.64.0.0/13
 141.101.64.0/18
@@ -52,12 +56,16 @@ ai.com
 162.159.0.0/16
 198.41.128.0/17
 
-# --- GoogleVideo CDN ---
+# --- Google ASN (GoogleVideo) additional ranges ---
 74.125.0.0/16
 172.217.0.0/16
 173.194.0.0/16
 209.85.128.0/17
 216.58.192.0/19
+
+# --- Discord (Cloudflare via Discord) extra ---
+104.18.27.0/22
+104.18.28.0/22
 
 # --- Telegram (MTProto fallback) ---
 149.154.167.91
@@ -66,7 +74,10 @@ ai.com
 91.108.56.0/22
 149.154.160.0/20
 
-# --- Misc (to expand future support) ---
+# --- Additional services (парсинг DNS лучше подтянет) ---
 netflix.com
 assets.nflxext.com
 prod.netflix.net
+open.spotify.com
+spotify.com
+accounts.spotify.com
