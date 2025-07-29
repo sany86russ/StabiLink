@@ -1,31 +1,31 @@
 {
   "profiles": [
     {
+      "name": "FAKE_IPFRAG2",
+      "description": "FakeTLS + ipfrag2 (YouTube/Instagram)",
+      "filter": "tcp.DstPort == 443",
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2",
+      "strategy": "Fragmentation",
+      "timeout": 6,
+      "asn_hint": ["GOOGLE", "META"]
+    },
+    {
       "name": "FAKE_FAKEDSPLIT",
       "description": "FakeTLS + fakedsplit (универсальный)",
       "filter": "tcp.DstPort == 443",
       "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,fakedsplit",
       "strategy": "Default",
-      "timeout": 7,
+      "timeout": 6,
       "asn_hint": ["MTS_GROUP", "ROSTELECOM", "BEELINE", "MGTS"]
     },
     {
-      "name": "FAKE_IPFRAG2",
-      "description": "FakeTLS + ipfrag2 (лучше для YouTube/Instagram)",
-      "filter": "tcp.DstPort == 443",
-      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2",
-      "strategy": "Fragmentation",
-      "timeout": 7,
-      "asn_hint": ["GOOGLE", "META"]
-    },
-    {
       "name": "FAKE_UDPLEN",
-      "description": "FakeTLS + udplen (для ChatGPT/Twitter)",
+      "description": "FakeTLS + udplen (ChatGPT/Twitter/Azure)",
       "filter": "tcp.DstPort == 443",
       "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,udplen --dpi-desync-udplen-increment=3",
       "strategy": "Tamper",
-      "timeout": 7,
-      "asn_hint": ["MICROSOFT", "AZURE"]
+      "timeout": 6,
+      "asn_hint": ["AZURE", "MICROSOFT"]
     },
     {
       "name": "QUIC_BLOCK",
@@ -42,7 +42,7 @@
       "filter": "udp.DstPort >= 50000 and udp.DstPort <= 65000",
       "options": "--wf-udp=50000-65000 --dpi-desync=udplen --dpi-desync-udplen-increment=2",
       "strategy": "VoiceStrategy",
-      "timeout": 10,
+      "timeout": 8,
       "asn_hint": ["DISCORD"]
     }
   ]
