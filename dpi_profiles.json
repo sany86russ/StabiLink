@@ -6,7 +6,7 @@
       "filter": "tcp.DstPort == 443",
       "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --dpi-desync-ttl=5",
       "strategy": "Fragmentation",
-      "timeout": 7,
+      "timeout": 10,
       "asn_hint": ["MTS_GROUP", "MGTS", "MEGAFON"]
     },
     {
@@ -15,7 +15,7 @@
       "filter": "tcp.DstPort == 443",
       "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,fakedsplit --dpi-desync-ttl=7",
       "strategy": "Default",
-      "timeout": 7,
+      "timeout": 10,
       "asn_hint": ["ROSTELECOM", "BEELINE", "ER_TELECOM"]
     },
     {
@@ -24,12 +24,12 @@
       "filter": "tcp.DstPort == 443",
       "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,udplen --dpi-desync-udplen-increment=3 --dpi-desync-ttl=7",
       "strategy": "Tamper",
-      "timeout": 7,
+      "timeout": 10,
       "asn_hint": ["AKADO", "YANDEX", "CLOUD_MSK", "SKYNET", "NOVATEK", "ALL"]
     },
     {
       "name": "QUIC_BLOCK",
-      "description": "Жёсткая блокировка QUIC (UDP/443 → TCP)",
+      "description": "Жёсткая блокировка QUIC (UDP/443 без ipset)",
       "filter": "udp.DstPort == 443",
       "options": "--wf-udp=443 --dpi-desync=fake,udplen --dpi-desync-udplen-increment=1 --dpi-desync-ttl=5",
       "strategy": "QuicStrategy",
