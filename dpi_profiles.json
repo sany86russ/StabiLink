@@ -2,36 +2,36 @@
   "profiles": [
     {
       "name": "FAKE_IPFRAG2",
-      "description": "FakeTLS + ipfrag2 (YouTube/Instagram)",
+      "description": "MTS, MGTS, Megafon — FakeTLS + ipfrag2",
       "filter": "tcp.DstPort == 443",
-      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2",
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --dpi-desync-ttl=5",
       "strategy": "Fragmentation",
       "timeout": 6,
-      "asn_hint": ["GOOGLE", "META"]
+      "asn_hint": ["MTS_GROUP", "MGTS", "MEGAFON"]
     },
     {
       "name": "FAKE_FAKEDSPLIT",
-      "description": "FakeTLS + fakedsplit (универсальный)",
+      "description": "Rostelecom, Beeline, ER-Telecom — FakeTLS + fakedsplit",
       "filter": "tcp.DstPort == 443",
-      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,fakedsplit",
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,fakedsplit --dpi-desync-ttl=7",
       "strategy": "Default",
       "timeout": 6,
-      "asn_hint": ["MTS_GROUP", "ROSTELECOM", "BEELINE", "MGTS"]
+      "asn_hint": ["ROSTELECOM", "BEELINE", "ER_TELECOM"]
     },
     {
       "name": "FAKE_UDPLEN",
-      "description": "FakeTLS + udplen (ChatGPT/Twitter/Azure)",
+      "description": "Akado, Yandex, Cloud, fallback — FakeTLS + udplen",
       "filter": "tcp.DstPort == 443",
-      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,udplen --dpi-desync-udplen-increment=3",
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,udplen --dpi-desync-udplen-increment=3 --dpi-desync-ttl=7",
       "strategy": "Tamper",
       "timeout": 6,
-      "asn_hint": ["AZURE", "MICROSOFT"]
+      "asn_hint": ["AKADO", "YANDEX", "CLOUD_MSK", "SKYNET", "NOVATEK", "ALL"]
     },
     {
       "name": "QUIC_BLOCK",
-      "description": "Блокировка QUIC (HTTP/3 → TCP)",
+      "description": "Блокировка QUIC (HTTP/3) для всех провайдеров",
       "filter": "udp.DstPort == 443",
-      "options": "--wf-udp=443 --dpi-desync=fake,udplen --dpi-desync-udplen-increment=1",
+      "options": "--wf-udp=443 --dpi-desync=fake,udplen --dpi-desync-udplen-increment=1 --dpi-desync-ttl=5",
       "strategy": "QuicStrategy",
       "timeout": 5,
       "asn_hint": ["ALL"]
@@ -40,10 +40,10 @@
       "name": "DISCORD_VOICE",
       "description": "Discord Voice UDP (голосовые чаты)",
       "filter": "udp.DstPort >= 50000 and udp.DstPort <= 65000",
-      "options": "--wf-udp=50000-65000 --dpi-desync=udplen --dpi-desync-udplen-increment=2",
+      "options": "--wf-udp=50000-65000 --dpi-desync=udplen --dpi-desync-udplen-increment=2 --dpi-desync-ttl=5",
       "strategy": "VoiceStrategy",
       "timeout": 8,
-      "asn_hint": ["DISCORD"]
+      "asn_hint": ["ALL"]
     }
   ]
 }
