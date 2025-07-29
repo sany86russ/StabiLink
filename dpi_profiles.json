@@ -2,34 +2,34 @@
   "profiles": [
     {
       "name": "FAKE_IPFRAG2",
-      "description": "MTS, MGTS, Megafon — FakeTLS + ipfrag2 + блокировка QUIC",
-      "filter": "tcp.DstPort == 443 or udp.DstPort == 443",
-      "options": "--wf-tcp=443 --wf-udp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --dpi-desync-ttl=5",
+      "description": "MTS, MGTS, Megafon — FakeTLS + ipfrag2 (TCP)",
+      "filter": "tcp.DstPort == 443",
+      "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,ipfrag2 --dpi-desync-ttl=5",
       "strategy": "Fragmentation",
-      "timeout": 6,
+      "timeout": 7,
       "asn_hint": ["MTS_GROUP", "MGTS", "MEGAFON"]
     },
     {
       "name": "FAKE_FAKEDSPLIT",
-      "description": "Rostelecom, Beeline, ER-Telecom — FakeTLS + fakedsplit",
+      "description": "Rostelecom, Beeline, ER-Telecom — FakeTLS + fakedsplit (TCP)",
       "filter": "tcp.DstPort == 443",
       "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,fakedsplit --dpi-desync-ttl=7",
       "strategy": "Default",
-      "timeout": 6,
+      "timeout": 7,
       "asn_hint": ["ROSTELECOM", "BEELINE", "ER_TELECOM"]
     },
     {
       "name": "FAKE_UDPLEN",
-      "description": "Akado, Yandex, Cloud — FakeTLS + udplen",
+      "description": "Akado, Yandex, Cloud — FakeTLS + udplen (TCP)",
       "filter": "tcp.DstPort == 443",
       "options": "--wf-tcp=443 --ipset=ipset.txt --dpi-desync=fake,udplen --dpi-desync-udplen-increment=3 --dpi-desync-ttl=7",
       "strategy": "Tamper",
-      "timeout": 6,
+      "timeout": 7,
       "asn_hint": ["AKADO", "YANDEX", "CLOUD_MSK", "SKYNET", "NOVATEK", "ALL"]
     },
     {
       "name": "QUIC_BLOCK",
-      "description": "Жёсткая блокировка QUIC (HTTP/3)",
+      "description": "Жёсткая блокировка QUIC (UDP/443 → TCP)",
       "filter": "udp.DstPort == 443",
       "options": "--wf-udp=443 --dpi-desync=fake,udplen --dpi-desync-udplen-increment=1 --dpi-desync-ttl=5",
       "strategy": "QuicStrategy",
