@@ -1,39 +1,50 @@
-# --- YouTube / Google ---
 youtube.com
 www.youtube.com
 m.youtube.com
-ytimg.com
 i.ytimg.com
 googlevideo.com
-yt3.ggpht.com
 ggpht.com
 youtubei.googleapis.com
 youtubeusercontent.com
 *.googlevideo.com
-
-# --- Twitch ---
+ytimg.l.google.com
 twitch.tv
 www.twitch.tv
 static.twitchcdn.net
 video-edge.twitch.tv
 live-edge.twitch.tv
-
-# --- Discord ---
-discord.com
-discord.gg
+cloudflare-ech.com
 cdn.discordapp.com
 media.discordapp.net
-discordapp.net
 gateway.discord.gg
 status.discord.com
-
-# --- Twitter / X ---
+dis.gd
+discord-attachments-uploads-prd.storage.googleapis.com
+discord.app
+discord.co
+discord.com
+discord.design
+discord.dev
+discord.gift
+discord.gifts
+discord.gg
+discord.media
+discord.new
+discord.store
+discord.status
+discord-activities.com
+discordactivities.com
+discordapp.com
+discordapp.net
+discordcdn.com
+discordmerch.com
+discordpartygames.com
+discordsays.com
+discordsez.com
 twitter.com
 abs.twimg.com
 video.twimg.com
 pbs.twimg.com
-
-# --- Instagram / Meta ---
 instagram.com
 www.instagram.com
 scontent.cdninstagram.com
@@ -41,43 +52,28 @@ cdninstagram.com
 fbcdn.net
 scontent.xx.fbcdn.net
 static.xx.fbcdn.net
-
-# --- ChatGPT / OpenAI ---
-chat.openai.com
-cdn.openai.com
-ai.com
-
-# --- Cloudflare IP ranges ---
-104.16.0.0/12
-172.64.0.0/13
-141.101.64.0/18
-188.114.96.0/20
-185.60.216.0/22
-162.159.0.0/16
-198.41.128.0/17
-
-# --- Google ASN (GoogleVideo) additional ranges ---
-74.125.0.0/16
-172.217.0.0/16
-173.194.0.0/16
-209.85.128.0/17
-216.58.192.0/19
-
-# --- Discord (Cloudflare via Discord) extra ---
-104.18.27.0/22
-104.18.28.0/22
-
-# --- Telegram (MTProto fallback) ---
-149.154.167.91
-91.108.4.0/22
-91.108.8.0/22
-91.108.56.0/22
-149.154.160.0/20
-
-# --- Additional services (парсинг DNS лучше подтянет) ---
 netflix.com
 assets.nflxext.com
 prod.netflix.net
 open.spotify.com
 spotify.com
 accounts.spotify.com
+yt3.ggpht.com
+yt4.ggpht.com
+yt3.googleusercontent.com
+jnn-pa.googleapis.com
+stable.dl2.discordapp.net
+wide-youtube.l.google.com
+youtube-nocookie.com
+youtube-ui.l.google.com
+youtubeembeddedplayer.googleapis.com
+youtubekids.com
+youtu.be
+yt-video-upload.l.google.com
+ytimg.com
+ytimg.l.google.com
+frankerfacez.com
+ffzap.com
+betterttv.net
+7tv.app
+7tv.io
