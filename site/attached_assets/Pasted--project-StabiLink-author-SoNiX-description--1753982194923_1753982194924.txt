@@ -1,0 +1,122 @@
+{
+  "project": "StabiLink",
+  "author": "SoNiX",
+  "description": "Современный одностраничный адаптивный лендинг StabiLink (2025). Доступ к любимым сервисам в России без упоминания VPN. Flat-футуризм, светлая и тёмная темы, Canvas-анимация цифровой сети, переключатель тарифов Basic/Pro, hover-эффекты, scroll-анимации, фиксированный CTA и анимация счётчика пользователей.",
+  "design": {
+    "style": "flat-futurism",
+    "year": 2025,
+    "colors": {
+      "light": {
+        "background": "#ffffff",
+        "text": "#222222",
+        "accent1": "#00b4d8",
+        "accent2": "#0077b6"
+      },
+      "dark": {
+        "background": "#0a1931",
+        "text": "#f1f1f1",
+        "accent1": "#00b4d8",
+        "accent2": "#0077b6"
+      }
+    },
+    "fonts": ["Inter", "Segoe UI", "Arial"]
+  },
+  "animations": {
+    "hero": {
+      "canvas_network": true,
+      "reacts_to_cursor": true,
+      "typewriter_title": true
+    },
+    "scroll_effects": "fade-in slide-up",
+    "hover_effects": ["cards_lift", "buttons_glow", "reviews_3D"],
+    "pricing_toggle": "smooth_switch",
+    "light_dark_mode": true,
+    "floating_cta": {
+      "enabled": true,
+      "text": "Попробовать бесплатно",
+      "pulse_animation": true
+    },
+    "users_counter": {
+      "enabled": true,
+      "target": 12000
+    }
+  },
+  "structure": {
+    "navigation": ["Логотип StabiLink", "Как это работает", "Тарифы", "Подписка", "Переключатель темы"],
+    "sections": [
+      {
+        "id": "hero",
+        "title": "Свободный интернет без границ",
+        "subtitle": "StabiLink — стабильный доступ к любимым сервисам всегда и везде.",
+        "image": "hero.png",
+        "cta": "Попробовать бесплатно"
+      },
+      {
+        "id": "about",
+        "title": "О проекте",
+        "text": "StabiLink создан для свободного доступа к вашим любимым сайтам и приложениям. Мы заботимся о стабильности и безопасности соединения.",
+        "image": "about.png"
+      },
+      {
+        "id": "how",
+        "title": "Как это работает?",
+        "steps": [
+          {"image": "step1.png", "title": "Подключись", "text": "Скачай и установи StabiLink."},
+          {"image": "step2.png", "title": "Получи доступ", "text": "Запусти и используй любимые сервисы."},
+          {"image": "step3.png", "title": "Пользуйся без ограничений", "text": "Свободный интернет всегда с тобой."}
+        ]
+      },
+      {
+        "id": "advantages",
+        "title": "Преимущества",
+        "items": [
+          {"icon": "speed.png", "title": "Скорость", "text": "Высокая скорость подключения."},
+          {"icon": "stability.png", "title": "Стабильность", "text": "Надёжная работа без сбоев."},
+          {"icon": "availability.png", "title": "Доступность", "text": "Работает везде, где есть интернет."},
+          {"icon": "simple.png", "title": "Простота", "text": "Простой интерфейс и установка."}
+        ]
+      },
+      {
+        "id": "reviews",
+        "title": "Отзывы пользователей",
+        "reviews": [
+          {"avatar": "review1.png", "text": "Наконец-то могу пользоваться нужными сервисами без ограничений!", "author": "Мария, Москва"},
+          {"avatar": "review2.png", "text": "Спасибо StabiLink! Связь не пропадает, сервис всегда стабилен.", "author": "Иван, Санкт-Петербург"},
+          {"avatar": "review3.png", "text": "Удобный интерфейс и отличные тарифы. Всё супер!", "author": "Денис, Екатеринбург"}
+        ]
+      },
+      {
+        "id": "pricing",
+        "title": "Тарифы StabiLink",
+        "toggle": true,
+        "plans": [
+          {
+            "name": "Basic",
+            "price": "0₽ / месяц",
+            "features": ["Стабильный доступ", "Базовая скорость", "Ограниченный функционал"]
+          },
+          {
+            "name": "Pro",
+            "price": "299₽ / месяц",
+            "features": ["Максимальная скорость", "Без ограничений", "Приоритетная поддержка"]
+          }
+        ]
+      },
+      {
+        "id": "subscribe",
+        "title": "Оставьте заявку",
+        "subtitle": "Получите доступ к StabiLink первым!",
+        "form": ["Имя", "Email"]
+      }
+    ],
+    "footer": "StabiLink © 2025 SoNiX"
+  },
+  "assets": {
+    "favicon": "favicon.png",
+    "hero": "hero.png",
+    "about": "about.png",
+    "steps": ["step1.png", "step2.png", "step3.png"],
+    "advantages": ["speed.png", "stability.png", "availability.png", "simple.png"],
+    "reviews": ["review1.png", "review2.png", "review3.png"]
+  }
+}
