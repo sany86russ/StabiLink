@@ -1,6 +1,6 @@
 {
   "ProMode": false,
-  "SessionLimitMinutes": 240,
+  "SessionLimitMinutes": 1266,
   "WarnBeforeMinutes": [60, 5],
   "ProMessage": "🔥 Получите PRO-версию StabiLink, чтобы убрать ограничения и получить неограниченный доступ!"
 }
