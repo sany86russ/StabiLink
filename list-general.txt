@@ -8,11 +8,6 @@ youtubei.googleapis.com
 youtubeusercontent.com
 *.googlevideo.com
 ytimg.l.google.com
-twitch.tv
-www.twitch.tv
-static.twitchcdn.net
-video-edge.twitch.tv
-live-edge.twitch.tv
 cloudflare-ech.com
 cdn.discordapp.com
 media.discordapp.net
@@ -72,8 +67,3 @@ youtu.be
 yt-video-upload.l.google.com
 ytimg.com
 ytimg.l.google.com
-frankerfacez.com
-ffzap.com
-betterttv.net
-7tv.app
-7tv.io
