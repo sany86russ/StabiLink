@@ -67,3 +67,7 @@ youtu.be
 yt-video-upload.l.google.com
 ytimg.com
 ytimg.l.google.com
+eu-west-1.compute.amazonaws.com
+compute-1.amazonaws.com
+k8s.afr3.ea.com
+awsglobalaccelerator.com
