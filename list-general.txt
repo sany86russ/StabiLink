@@ -126,3 +126,4 @@ chat.whatsapp.com
 media.whatsapp.com
 cdn.whatsapp.com
 graph.whatsapp.com
+*.steamcontent.com
