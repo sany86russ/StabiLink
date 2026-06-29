@@ -5,8 +5,8 @@
 # ========================================
 # === TWITCH ===
 # twitch.tv
-ttvnw.net
-live-video.net
+# ttvnw.net
+# live-video.net
 # === YOUTUBE ===
 youtube.com
 www.youtube.com
