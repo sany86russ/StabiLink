@@ -4,9 +4,9 @@
 # Версия: 2.1.0 (очищено от дубликатов)
 # ========================================
 # === TWITCH ===
-twitch.tv
-# ttvnw.net
-# live-video.net
+# twitch.tv
+ttvnw.net
+live-video.net
 # === YOUTUBE ===
 youtube.com
 www.youtube.com
